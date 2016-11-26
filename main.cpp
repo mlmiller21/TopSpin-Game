@@ -5,18 +5,19 @@ using namespace std;
 
 
 int main() {
-
 	int numMoves = 0;	//numMoves is used to shuffle the puzzle
-	
+
 	int boardSize, topSize;
-	cout << "Enter board size and top size\nBoard size: ";
+	cout << "Enter board size and top size, make sure board size is greater than the top size\nBoard size: ";
 	cin >> boardSize;
 	cout << "Top size: ";
 	cin >> topSize;
+
 	TopSpin a(topSize, boardSize);	//New object a is created based off the user inputted parameters
 
 	cout << "Enter number of moves to initalize board with: ";
 	cin >> numMoves;
+
 	srand(time(NULL));
 	for (int i = 0; i < numMoves; ++i)
 	{
