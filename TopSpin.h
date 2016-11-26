@@ -36,21 +36,56 @@ public:
 	void setBoard(int a);
 	int getTop();
 	void setTop(int a);
-
 	friend std::ostream& operator<< (std::ostream &os, TopSpin &ts) {	
 		//Overload print function using ostream, uses for loop to print out the top surrounded by a box, followed				
 		//By the rest of the list
-
-		os << "[";
+		os << " ";
 		for (int i = 0; i < ts.topSize; i++, ++(ts.xd))
 		{
-			os << ts.xd.getValue() << " ";
+			if ((ts.xd.getValue()) >= 10)	//If the value is greater than 10, 3 dashes need to be printed to accomodate for
+				os << "___";				//the 2 digits as well as the space, otherwise only 2 dashes are printed
+			else
+				os << "__";
 		}
-		os << "] ";
+		for (int i = 0;i < ts.topSize;i++)
+		{
+			--(ts.xd);	//Since the for loop has the iterator traverse forward through the list, it must traverse backwards
+		}				//an equal number of times
+		os << "_" << std::endl << "|";
+		for (int i = 0; i < ts.topSize; i++, ++(ts.xd))
+		{
+			if ((ts.xd.getValue()) >= 10)
+				os << "   ";
+			else
+				os << "  ";
+		}
+		for (int i = 0;i < ts.topSize;i++)
+		{
+			--(ts.xd);
+		}
+		os << " |" << std::endl << "| ";
+		for (int i = 0; i < ts.topSize; i++, ++(ts.xd))
+		{
+			os << ts.xd.getValue() << " ";	//Traverses through the list, and prints out the values for the top, based off 
+		}									//the top size
+		os << "| ";
 		for (int i = ts.topSize; i < ts.boardSize; i++, ++(ts.xd))
 		{
-			os << ts.xd.getValue() << " ";
+			os << ts.xd.getValue() << " ";	//Traverses through the list and prints out the rest of the board values
 		}
+		os << std::endl << "|";
+		for (int i = 0; i < ts.topSize; i++, ++(ts.xd))
+		{
+			if ((ts.xd.getValue()) >= 10)
+				os << "___";
+			else
+				os << "__";
+		}
+		for (int i = 0;i < ts.topSize;i++)
+		{
+			--(ts.xd);
+		}
+		os << "_|";
 		return os;
 	}
 
