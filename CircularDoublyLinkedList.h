@@ -26,11 +26,11 @@ public:
 		{
 			ptr = _ptr;
 		}
-		void operator++()
+		void operator++()	//++ overload operator, traverses list to the right
 		{
 			ptr = ptr->next;
 		}
-		void operator--()
+		void operator--()	//-- overload operator, traverses list to the left
 		{
 			ptr = ptr->previous;
 		}
@@ -42,7 +42,7 @@ public:
 		{
 			ptr->value = val;
 		}
-		bool operator!=(const iterator&b)
+		bool operator!=(const iterator&b)	//!= overload operatror, compares values
 		{
 			return ptr != b.ptr;
 		}
