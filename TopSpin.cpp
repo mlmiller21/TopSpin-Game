@@ -22,7 +22,7 @@ TopSpin::TopSpin(int topsize, int boardsize)
 		}
 	}
 
-	xd = board.begin();
+	xd = board.begin();	//Beginning of board is given value to iterator
 }
 
 void TopSpin::shiftLeft(int a)	//Using an iterator to travere traverse through the circularlist to the left
@@ -43,20 +43,20 @@ void TopSpin::shiftRight(int a)
 
 void TopSpin::spin()
 {
-	CircularDoublyLinkedList<int>::iterator first, second;	//Spin takes advantage of the fact that the topsize number will always be even
+	CircularDoublyLinkedList<int>::iterator first, second;	
 	first = xd;												//Uses iterators to swap one half of the topsize and then the other half
 	second = xd;
 	int temp;
 
 	for (int i = 1; i < topSize;i++)
 	{
-		++second;
+		++second;	//First for loop traverses the "Second" iterator to the end of the topsize, reversing the second half of the list
 	}
 
-	for (int i = 0; i < topSize / 2;i++)
+	for (int i = 0; i < topSize / 2;i++)	//Second for loop swaps the values of "first" and "second" for the other half of the list
 	{
 		 
-		temp = first.getValue();
+		temp = first.getValue();	//Temp stores the value of the first node, and then swaps it with the next node
 		first.setValue(second.getValue());
 		second.setValue(temp);
 
@@ -65,11 +65,13 @@ void TopSpin::spin()
 	}
 }
 
-
-bool TopSpin::isSolved()	//Creates a new iterator to preserve the old one, and compares the index to the linked list
+							//Uses a while loop to stop new iterator when you get to 1, since list is circular, so that 1234=4123=3412=2341
+bool TopSpin::isSolved()	//iterator traverses through list and compares each value to the index
 {							//To check if the values match, returns true if all values match otherwise returns false
-	CircularDoublyLinkedList<int>::iterator xp = xd;
+	CircularDoublyLinkedList<int>::iterator xp = xd;	
 	bool win;
+	while (xp.getValue() != 1)
+		++xp;
 	for (int i = 1;i <= boardSize;i++)
 	{
 		if (i == xp.getValue())
