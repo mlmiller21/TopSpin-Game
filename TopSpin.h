@@ -22,7 +22,7 @@ private:
 
 public:
 
-	CircularDoublyLinkedList<int>::iterator xd;
+	CircularDoublyLinkedList<int>::iterator xd;	//New iterator object "xd" is created
 
 	TopSpin(int topsize, int boardsize);
 	~TopSpin() {};
@@ -38,8 +38,10 @@ public:
 	void setTop(int a);
 
 	friend std::ostream& operator<< (std::ostream &os, TopSpin &ts) {	
+		//Overload print function using ostream, uses for loop to print out the top surrounded by a box, followed				
+		//By the rest of the list
 
-		os << "[ ";
+		os << "[";
 		for (int i = 0; i < ts.topSize; i++, ++(ts.xd))
 		{
 			os << ts.xd.getValue() << " ";
